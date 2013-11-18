@@ -8,12 +8,6 @@ return array(
         )
     ),
 
-    'controllers' => array(
-        'invokables' => array(
-            'Enrise\Apigility\Workbench\Workbench' => 'Enrise\Apigility\Workbench\WorkbenchController',
-        ),
-    ),
-
     'router' => array(
         'routes' => array(
             'enrise-apigility-workbench' => array(
@@ -21,7 +15,7 @@ return array(
                 'options' => array(
                     'route' => '/workbench',
                     'defaults' => array(
-                        'controller' => 'Enrise\Apigility\Workbench\Workbench',
+                        'controller' => 'Enrise\Apigility\Workbench\Controller\Workbench',
                         'action'     => 'index',
                     ),
                 ),

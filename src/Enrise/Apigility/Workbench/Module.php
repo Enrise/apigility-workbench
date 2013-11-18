@@ -15,6 +15,43 @@ class Module
         );
     }
 
+    public function getServiceConfig()
+    {
+        return array('factories' => array(
+            'Enrise\Apigility\Workbench\Model\ModuleModel' => function ($services) {
+                    if (!$services->has('ModuleManager')) {
+                        throw new ServiceNotCreatedException(
+                            'Cannot create Enrise\Apigility\Workbench\Model\ModuleModel service because ModuleManager service is not present'
+                        );
+                    }
+                    $modules    = $services->get('ModuleManager');
+                    $restConfig = array();
+                    $rpcConfig  = array();
+                    if ($services->has('Config')) {
+                        $config = $services->get('Config');
+                        if (isset($config['zf-rest'])) {
+                            $restConfig = $config['zf-rest'];
+                        }
+                        if (isset($config['zf-rpc'])) {
+                            $rpcConfig = $config['zf-rpc'];
+                        }
+                    }
+                    return new Model\ModuleModel($modules, $restConfig, $rpcConfig);
+                },
+        ));
+    }
+
+    public function getControllerConfig()
+    {
+        return array('factories' => array(
+            'Enrise\Apigility\Workbench\Controller\Workbench' => function ($controllers) {
+                    $services = $controllers->getServiceLocator();
+                    $model    = $services->get('Enrise\Apigility\Workbench\Model\ModuleModel');
+                    return new Controller\WorkbenchController($model);
+                },
+        ));
+    }
+
     public function getConfig()
     {
         return include __DIR__ . '/../../../../config/module.config.php';
