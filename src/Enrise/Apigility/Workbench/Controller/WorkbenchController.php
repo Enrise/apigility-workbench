@@ -17,6 +17,6 @@ class WorkbenchController extends AbstractActionController
 
     public function indexAction()
     {
-        var_dump($this->moduleModel->getModules());
+        var_dump($this->moduleModel->getEntryPoints($this->getServiceLocator()));
     }
 }
