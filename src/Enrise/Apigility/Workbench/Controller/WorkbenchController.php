@@ -24,7 +24,7 @@ class WorkbenchController extends AbstractActionController implements ServiceLoc
 
     public function indexAction()
     {
-        $this->getHttpClient();
+        var_dump($this->moduleModel->getEntryPoints($this->getServiceLocator()));
     }
 
     public function proxyAction()
