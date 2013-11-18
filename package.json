@@ -1,0 +1,6 @@
+{
+    "name": "enrise/apigility-workbench",
+    "autoload": {
+        "psr-0": {"Enrise\\Apigility\\Workbench": "src/"}
+    }
+}
