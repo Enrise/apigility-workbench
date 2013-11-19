@@ -4,7 +4,6 @@ namespace Enrise\Apigility\Workbench\Controller;
 
 use Enrise\Apigility\Workbench\Filter\ProxyInputFilter;
 use Enrise\Apigility\Workbench\Model\ApiRequestBuilder;
-use Zend\Http\Request;
 use Zend\Mvc\Controller\AbstractActionController;
 use Enrise\Apigility\Workbench\Model\ModuleModel;
 use Zend\ServiceManager\ServiceLocatorInterface;
@@ -28,11 +27,14 @@ class WorkbenchController extends AbstractActionController
 
     public function indexAction()
     {
-        var_dump($this->moduleModel->getEntryPoints($this->getServiceLocator()));
+        $view = new ViewModel();
+        $view->entrypoints = $this->moduleModel->getEntryPoints($this->getServiceLocator());
+        return $view;
     }
 
     public function proxyAction()
     {
+        var_dump($_POST); die();
         $viewModel = new JsonModel();
 
         /** @var \Zend\Http\Request $request */
