@@ -57,27 +57,27 @@ class Module
         return include __DIR__ . '/../../../../config/module.config.php';
     }
 
-//    /**
-//     * @param  \Zend\Mvc\MvcEvent $e The MvcEvent instance
-//     * @return void
-//     */
-//    public function onBootstrap($e)
-//    {
-//        $app = $e->getApplication();
-//        $app->getEventManager()->attach('render', array($this, 'registerJsonStrategy'), 100);
-//    }
-//
-//    /**
-//     * @param  \Zend\Mvc\MvcEvent $e The MvcEvent instance
-//     * @return void
-//     */
-//    public function registerJsonStrategy($e)
-//    {
-//        $app          = $e->getTarget();
-//        $locator      = $app->getServiceManager();
-//        $view         = $locator->get('Zend\View\View');
-//        $jsonStrategy = $locator->get('ViewJsonStrategy');
-//
-//        $view->getEventManager()->attach($jsonStrategy, 100);
-//    }
+    /**
+     * @param  \Zend\Mvc\MvcEvent $e The MvcEvent instance
+     * @return void
+     */
+    public function onBootstrap($e)
+    {
+        $app = $e->getApplication();
+        $app->getEventManager()->attach('render', array($this, 'registerJsonStrategy'), 100);
+    }
+
+    /**
+     * @param  \Zend\Mvc\MvcEvent $e The MvcEvent instance
+     * @return void
+     */
+    public function registerJsonStrategy($e)
+    {
+        $app          = $e->getTarget();
+        $locator      = $app->getServiceManager();
+        $view         = $locator->get('Zend\View\View');
+        $jsonStrategy = $locator->get('ViewJsonStrategy');
+
+        $view->getEventManager()->attach($jsonStrategy, 100);
+    }
 }

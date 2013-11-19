@@ -34,7 +34,6 @@ class WorkbenchController extends AbstractActionController
 
     public function proxyAction()
     {
-        var_dump($_POST); die();
         $viewModel = new JsonModel();
 
         /** @var \Zend\Http\Request $request */
