@@ -38,7 +38,9 @@ return array(
     ),
     'service_manager' => array(
         'services' => array(
-            'ApigilityWorkbenchHttpClient' => new Zend\Http\Client()
+            'ApigilityWorkbenchHttpClient' => new Zend\Http\Client(),
+            'ApiRequestBuilder' => new Enrise\Apigility\Workbench\Model\ApiRequestBuilder(),
+            'HttpResponseSerializer' => new Enrise\Apigility\Workbench\Model\HttpResponseSerializer()
         )
     ),
     'apigility-workbench' => array(
