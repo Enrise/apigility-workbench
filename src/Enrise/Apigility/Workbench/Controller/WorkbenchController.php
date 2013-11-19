@@ -39,7 +39,7 @@ class WorkbenchController extends AbstractActionController
         /** @var \Zend\Http\Request $request */
         $request = $this->getRequest();
 
-        $filter = new ProxyInputFilter();
+        /*$filter = new ProxyInputFilter();
         if ($request->isPost()) {
             $filter->setData($request->getPost());
             if (!$filter->isValid()) {
@@ -54,7 +54,7 @@ class WorkbenchController extends AbstractActionController
 
                 return $viewModel;
             }
-        }
+        }*/
 
         // build proxy call
         /** @var Client $apiClient */
