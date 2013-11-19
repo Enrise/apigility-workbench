@@ -27,8 +27,6 @@ class ApiRequestBuilder
 
         $apiRequest->setUri($proxyData['core']['host'] . $uri);
 
-        var_dump($apiRequest);
-
         return $apiRequest;
     }
 }
