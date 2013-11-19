@@ -21,14 +21,14 @@ if (isset($this->data['config']['resource_http_methods'])) {
                                 <a onclick="Docs.toggleOperationContent('<?php echo $nodeId ?>');" href="<?php echo $jslink ?>"><?php echo $method ?></a>
                             </span>
                             <span class="path">
-                                <a onclick="Docs.toggleOperationContent('<?php echo $nodeId ?>');" href="<?php echo $jslink ?>"><?php echo $url ?></a>
+                                <a data-endpoint-div='<?php echo md5($nodeId) ?>' href="<?php echo $jslink ?>" class="toggler"><?php echo $url ?></a>
                             </span>
                         </h3>
                         <ul class="options">
 
                         </ul>
                     </div>
-                    <div id="<?php echo $nodeId ?>" class="content hidden">
+                    <div id="<?php echo md5($nodeId); ?>" class="content hidden">
                         <form method="post" class="sandbox" action="<?php echo $this->url('enrise-apigility-workbench/apiproxy') ?>" accept-charset="UTF-8">
                             <h4>Parameters</h4>
                             <table class="fullwidth">

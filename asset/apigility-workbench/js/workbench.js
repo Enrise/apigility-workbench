@@ -7,6 +7,10 @@ var workBench = {
     init: function()
     {
         $('.submit').click(workBench.submit);
+        $('.toggler').click(function() {
+            var $div = $('#' + $(this).attr('data-endpoint-div'));
+            $div.toggleClass('hidden');
+        });
     },
 
     submit: function()
@@ -28,7 +32,7 @@ var workBench = {
 
     handleResponse: function(response, $form)
     {
-        $form.remove('.response');
+        $form.find('.response').remove();
 
         var html = '';
         for (key in response) {
