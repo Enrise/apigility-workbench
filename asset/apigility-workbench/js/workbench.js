@@ -9,12 +9,7 @@ var workBench = {
         $('.submit').click(workBench.submit);
         $('.toggler').click(function() {
             var $div = $('#' + $(this).attr('data-endpoint-div'));
-            if ($div.hasClass('hidden')) {
-                $div.removeClass('hidden');
-            } else {
-                $div.addClass('hidden');
-
-            }
+            $div.toggleClass('hidden');
         });
     },
 
