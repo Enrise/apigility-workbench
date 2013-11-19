@@ -1,108 +1,37 @@
-<label for="resources">Resource</label><select id="resources"></select><br>
-<label>Collection: </label><input type="radio" name="resourceorcollection" value="resource">No
-<input type="radio" name="resourceorcollection" value="collection">Yes<br>
-<label for="method">Method: </label><select id="method"></select><br>
-<label for="content-type">Content-type: </label><select id="content-type"></select><br>
-<label for="accept-type">Accept-type: </label><select id="accept-type"></select><br />
-<label for="payload">Payload: </label><textarea id="payload"></textarea>
-<script>
-    var zf_rest = <?php echo json_encode(array(
-        'Books\\V1\\Rest\\Author\\Controller' => array(
-            'listener' => 'Books\\V1\\Rest\\Author\\AuthorResource',
-            'route_name' => 'books.rest.author',
-            'identifier_name' => 'author_id',
-            'collection_name' => 'author',
-            'resource_http_methods' => array(
-                0 => 'GET',
-                1 => 'PATCH',
-                2 => 'PUT',
-                3 => 'DELETE',
-            ),
-            'collection_http_methods' => array(
-                0 => 'GET',
-                1 => 'POST',
-            ),
-            'collection_query_whitelist' => array(),
-            'page_size' => '25',
-            'page_size_param' => '',
-            'entity_class' => 'Books\\V1\\Rest\\Author\\AuthorEntity',
-            'collection_class' => 'Books\\V1\\Rest\\Author\\AuthorCollection',
-        ),
-        'Books\\V1\\Rest\\Book\\Controller' => array(
-            'listener' => 'Books\\V1\\Rest\\Book\\BookResource',
-            'route_name' => 'books.rest.book',
-            'identifier_name' => 'book_id',
-            'collection_name' => 'book',
-            'resource_http_methods' => array(
-                0 => 'GET',
-                1 => 'PATCH',
-                2 => 'PUT',
-                3 => 'DELETE',
-            ),
-            'collection_http_methods' => array(
-                0 => 'GET',
-                1 => 'POST',
-            ),
-            'collection_query_whitelist' => array(),
-            'page_size' => '25',
-            'page_size_param' => '',
-            'entity_class' => 'Books\\V1\\Rest\\Book\\BookEntity',
-            'collection_class' => 'Books\\V1\\Rest\\Book\\BookCollection',
-        ),
-        'Books\\V1\\Rest\\Review\\Controller' => array(
-            'listener' => 'Books\\V1\\Rest\\Review\\ReviewResource',
-            'route_name' => 'books.rest.review',
-            'identifier_name' => 'review_id',
-            'collection_name' => 'review',
-            'resource_http_methods' => array(
-                0 => 'GET',
-                1 => 'PATCH',
-                2 => 'PUT',
-                3 => 'DELETE',
-            ),
-            'collection_http_methods' => array(
-                0 => 'GET',
-                1 => 'POST',
-            ),
-            'collection_query_whitelist' => array(),
-            'page_size' => '25',
-            'page_size_param' => '',
-            'entity_class' => 'Books\\V1\\Rest\\Review\\ReviewEntity',
-            'collection_class' => 'Books\\V1\\Rest\\Review\\ReviewCollection',
-        ),
-    ));?>;
-var routes = <?php echo json_encode(array(
-        'books.rest.author' => array(
-            'type' => 'Segment',
-            'options' => array(
-                'route' => '/author[/:author_id]',
-                'defaults' => array(
-                    'controller' => 'Books\\V1\\Rest\\Author\\Controller',
-                ),
-            ),
-        ),
-        'books.rest.book' => array(
-            'type' => 'Segment',
-            'options' => array(
-                'route' => '/book[/:book_id]',
-                'defaults' => array(
-                    'controller' => 'Books\\V1\\Rest\\Book\\Controller',
-                ),
-            ),
-        ),
-        'books.rest.review' => array(
-            'type' => 'Segment',
-            'options' => array(
-                'route' => '/review[/:review_id]',
-                'defaults' => array(
-                    'controller' => 'Books\\V1\\Rest\\Review\\Controller',
-                ),
-            ),
-        ),
-    )
-    ); ?>
-</script>
+<div id="content">
+    <div class="container">
+        <div class="fullwidth_column">
+            <?php
+            $content = '';
+            foreach ($this->entrypoints as $k => $v) {
+                $nodeId = lcfirst(str_replace(' ', '', ucwords(str_ireplace(array('\\', '\\\\', '/'), ' ', $k))));
 
+                $content = '';
+                $content .= $this->partial('enrise/workbench/index/resource', array('data' => $v));
+                $id = 'resource_' . $nodeId;
 
+                if (0 < strlen($content)) {
+                    ?>
+                    <li class="resource" id="<?php echo $id ?>">
+                        <div class="heading">
+                            <h2>
+                                <a onclick="Docs.toggleEndpointListForResource('<?php echo $nodeId ?>');" href="#!/<?php echo $nodeId ?>">/<?php echo $k ?></a>
+                            </h2>
+                            <ul class="options">
+                                <li><a onclick="Docs.toggleEndpointListForResource('<?php echo $nodeId ?>');" id="endpointListTogger_<?php echo $nodeId ?>" href="#!/<?php echo $nodeId ?>">Show/Hide</a></li>
+                                <li><a onclick="Docs.collapseOperationsForResource('<?php echo $nodeId ?>'); return false;" href="#">List Operations</a></li>
+                                <li><a onclick="Docs.expandOperationsForResource('<?php echo $nodeId ?>'); return false;" href="#">Expand Operations</a></li>
+                            </ul>
+                        </div>
+                        <ul class="endpoints">
+                            <?php echo $content; ?>
+                        </ul>
+                    </li>
+                <?php
+                }
+            }
 
-
+            ?>
+        </div>
+    </div>
+</div>

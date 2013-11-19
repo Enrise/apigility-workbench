@@ -12,6 +12,7 @@ return array(
     'view_manager' => array(
         'template_map' => array(
             'enrise/workbench/index' => __DIR__ . '/../view/workbench/index.phtml',
+            'enrise/workbench/index/resource' => __DIR__ . '/../view/workbench/html/resource.phtml',
             'enrise/workbench/proxy' => __DIR__ . '/../view/workbench/proxy.phtml',
             'layout/layout'           => __DIR__ . '/../view/layout/layout.phtml',
         )
@@ -45,7 +46,9 @@ return array(
     ),
     'service_manager' => array(
         'services' => array(
-            'ApigilityWorkbenchHttpClient' => new Zend\Http\Client()
+            'ApigilityWorkbenchHttpClient' => new Zend\Http\Client(),
+            'ApiRequestBuilder' => new Enrise\Apigility\Workbench\Model\ApiRequestBuilder(),
+            'HttpResponseSerializer' => new Enrise\Apigility\Workbench\Model\HttpResponseSerializer()
         )
     ),
     'apigility-workbench' => array(
