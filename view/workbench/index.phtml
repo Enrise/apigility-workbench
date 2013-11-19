@@ -1,1 +1,37 @@
-sadasds
+<div id="content">
+    <div class="container">
+        <div class="fullwidth_column">
+            <?php
+            $content = '';
+            foreach ($this->entrypoints as $k => $v) {
+                $nodeId = lcfirst(str_replace(' ', '', ucwords(str_ireplace(array('\\', '\\\\', '/'), ' ', $k))));
+
+                $content = '';
+                $content .= $this->partial('enrise/workbench/index/resource', array('data' => $v));
+                $id = 'resource_' . $nodeId;
+
+                if (0 < strlen($content)) {
+                    ?>
+                    <li class="resource" id="<?php echo $id ?>">
+                        <div class="heading">
+                            <h2>
+                                <a onclick="Docs.toggleEndpointListForResource('<?php echo $nodeId ?>');" href="#!/<?php echo $nodeId ?>">/<?php echo $k ?></a>
+                            </h2>
+                            <ul class="options">
+                                <li><a onclick="Docs.toggleEndpointListForResource('<?php echo $nodeId ?>');" id="endpointListTogger_<?php echo $nodeId ?>" href="#!/<?php echo $nodeId ?>">Show/Hide</a></li>
+                                <li><a onclick="Docs.collapseOperationsForResource('<?php echo $nodeId ?>'); return false;" href="#">List Operations</a></li>
+                                <li><a onclick="Docs.expandOperationsForResource('<?php echo $nodeId ?>'); return false;" href="#">Expand Operations</a></li>
+                            </ul>
+                        </div>
+                        <ul class="endpoints">
+                            <?php echo $content; ?>
+                        </ul>
+                    </li>
+                <?php
+                }
+            }
+
+            ?>
+</div>
+</div>
+</div>

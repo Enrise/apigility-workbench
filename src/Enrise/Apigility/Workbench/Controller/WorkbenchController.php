@@ -7,6 +7,7 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Enrise\Apigility\Workbench\Model\ModuleModel;
 use Zend\ServiceManager\ServiceLocatorAwareInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
+use Zend\View\Model\ViewModel;
 
 
 class WorkbenchController extends AbstractActionController implements ServiceLocatorAwareInterface
@@ -24,11 +25,15 @@ class WorkbenchController extends AbstractActionController implements ServiceLoc
 
     public function indexAction()
     {
-        var_dump($this->moduleModel->getEntryPoints($this->getServiceLocator()));
+        $view = new ViewModel();
+        $view->entrypoints = $this->moduleModel->getEntryPoints($this->getServiceLocator());
+        return $view;
     }
 
     public function proxyAction()
     {
+        var_dump($_POST); die();
+
         /** @var \Zend\Http\Request $request */
         $request = $this->getRequest();
 
