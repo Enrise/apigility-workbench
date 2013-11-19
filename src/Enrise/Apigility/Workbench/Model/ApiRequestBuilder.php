@@ -14,6 +14,11 @@ class ApiRequestBuilder
 
         $proxyData = $proxyRequest->getPost();
 
+        $headers = new \Zend\Http\Headers();
+
+
+        $apiRequest->setHeaders($headers->fromString('Accept: application/json'));
+
         $apiRequest->setUri($proxyData['baseuri'] . $proxyData['endpoint']);
 
         return $apiRequest;
