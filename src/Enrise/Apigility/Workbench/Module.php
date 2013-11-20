@@ -2,6 +2,8 @@
 
 namespace Enrise\Apigility\Workbench;
 
+use Zend\ServiceManager\ServiceLocatorInterface;
+
 class Module
 {
     public function getAutoloaderConfig()
@@ -18,7 +20,7 @@ class Module
     public function getServiceConfig()
     {
         return array('factories' => array(
-            'Enrise\Apigility\Workbench\Model\ModuleModel' => function ($services) {
+            'Enrise\Apigility\Workbench\Model\ModuleModel' => function (ServiceLocatorInterface $services) {
                     if (!$services->has('ModuleManager')) {
                         throw new ServiceNotCreatedException(
                             'Cannot create Enrise\Apigility\Workbench\Model\ModuleModel service because ModuleManager service is not present'
