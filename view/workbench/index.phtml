@@ -1,14 +1,12 @@
-<div id="content">
-    <div class="container">
-        <div class="fullwidth_column">
-            <?php
-            $content = '';
-            foreach ($this->entrypoints as $k => $v) {
-                $nodeId = lcfirst(str_replace(' ', '', ucwords(str_ireplace(array('\\', '\\\\', '/'), ' ', $k))));
+<ul class="resources">
+<?php
+$content = '';
+foreach ($this->entrypoints as $k => $v) {
+    $nodeId = lcfirst(str_replace(' ', '', ucwords(str_ireplace(array('\\', '\\\\', '/'), ' ', $k))));
 
-                $content = '';
-                $content .= $this->partial('enrise/workbench/index/resource', array('data' => $v));
-                $id = 'resource_' . $nodeId;
+    $content = '';
+    $content .= $this->partial('enrise/workbench/index/resource', array('data' => $v));
+    $id = 'resource_' . $nodeId;
 
                 if (0 < strlen($content)) {
                     ?>
@@ -26,7 +24,5 @@
                 }
             }
 
-            ?>
-        </div>
-    </div>
-</div>
+?>
+</ul>

@@ -13,7 +13,7 @@ if (isset($this->data['config']['resource_http_methods'])) {
 
         $url = $this->data['route']['options']['route'];
         $nodeId = $method.'_'.$url;
-        $listClass = array($method, 'operation');
+        $listClass = array(strtolower($method), 'operation');
         $jslink = '#!/' . $nodeId;
         $version = $this->data['route']['options']['defaults']['version'];
         ?>
