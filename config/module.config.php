@@ -48,7 +48,8 @@ return array(
         'services' => array(
             'ApigilityWorkbenchHttpClient' => new Zend\Http\Client(),
             'ApiRequestBuilder' => new Enrise\Apigility\Workbench\Model\ApiRequestBuilder(),
-            'HttpResponseSerializer' => new Enrise\Apigility\Workbench\Model\HttpResponseSerializer()
+            'HttpResponseSerializer' => new Enrise\Apigility\Workbench\Model\HttpResponseSerializer(),
+            'HttpRequestSerializer' => new Enrise\Apigility\Workbench\Model\HttpRequestSerializer()
         )
     ),
     'apigility-workbench' => array(

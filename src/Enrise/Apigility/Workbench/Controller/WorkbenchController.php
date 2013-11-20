@@ -67,10 +67,13 @@ class WorkbenchController extends AbstractActionController
 
         // respond
         $response = $apiClient->dispatch($apiRequest);
-        $serializer = $this->getServiceLocator()->get('HttpResponseSerializer');
-        $serializer->setResponse($response);
+        $requestSerializer = $this->getServiceLocator()->get('HttpRequestSerializer');
+        $requestSerializer->setRequest($apiRequest);
+        $responseSerializer = $this->getServiceLocator()->get('HttpResponseSerializer');
+        $responseSerializer->setResponse($response);
 
-        $viewModel->setVariable('response', $serializer->serialize());
+        $viewModel->setVariable('response', $responseSerializer->serialize());
+        $viewModel->setVariable('request', $requestSerializer->serialize());
 
         return $viewModel;
     }
