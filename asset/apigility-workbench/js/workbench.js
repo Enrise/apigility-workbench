@@ -51,7 +51,7 @@ var workBench = {
 
         var html = '';
         if (response.response.statusCode >= 500 || response.response.statusCode == 404) {
-            html += '<img src="/apigility-workbench/zombie-elephant.jpg" alt="zombie elephant">';
+            html += '<img src="/apigility-workbench/img/zombie-elephant.jpg" alt="zombie elephant">';
         }
         html += '<div style="opacity: 1;" id="getGeneralCountries_sandbox_response" class="response">' +
         '    <h4>Response Code</h4>' +
