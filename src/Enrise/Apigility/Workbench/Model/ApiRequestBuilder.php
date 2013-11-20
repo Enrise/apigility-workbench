@@ -1,8 +1,5 @@
 <?php
-
-
 namespace Enrise\Apigility\Workbench\Model;
-
 
 use Zend\Http\Request;
 
@@ -21,9 +18,13 @@ class ApiRequestBuilder
         $uri = str_replace(array('[',']'), array('',''), $uri);
 
         $headers = new \Zend\Http\Headers();
+        $headers->addHeaderLine('Accept', $proxyData['core']['accept']);
         $apiRequest->setMethod($proxyData['core']['http_method']);
-        $apiRequest->setHeaders($headers->fromString('Accept: '.$proxyData['core']['accept']));
-
+        if (in_array($apiRequest->getMethod(), array('PUT', 'POST', 'PATCH'))) {
+            $headers->addHeaderLine('Content-Type', $proxyData['core']['content_type']);
+            $apiRequest->setContent($proxyData['rawparams']['body']);
+        }
+        $apiRequest->setHeaders($headers);
         $apiRequest->setUri($proxyData['core']['host'] . $uri);
 
         return $apiRequest;
