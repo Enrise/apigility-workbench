@@ -52,9 +52,12 @@ if (isset($this->data['config']['resource_http_methods'])) {
                                         ?>
                                     </td>
                                     <td width="500">
-                                        <strong><?php //echo $field->getDescription() ?></strong>
+                                        <strong>HTTP Header</strong>
                                     </td>
                                 </tr>
+                                <?php
+                                if (in_array($method, array('POST', 'PUT', 'PATCH'))) {
+                                ?>
                                 <tr>
                                     <td width="100">Content-Type</td>
                                     <td width="100" class="<?php echo implode(' ', array('code')) ?>">
@@ -67,10 +70,11 @@ if (isset($this->data['config']['resource_http_methods'])) {
                                         ?>
                                     </td>
                                     <td width="500">
-                                        <strong><?php //echo $field->getDescription() ?></strong>
+                                        <strong>HTTP header</strong>
                                     </td>
                                 </tr>
                                 <?php
+                                }
                                 $fields = (array)$this->data['config']['identifier_name'];
                                 $group  = array();
                                 foreach ($fields as $fieldName => $field) {
@@ -86,7 +90,7 @@ if (isset($this->data['config']['resource_http_methods'])) {
                                             ?>
                                         </td>
                                         <td width="500">
-                                            <strong><?php //echo $field->getDescription() ?></strong>
+                                            <strong>REST param</strong>
                                         </td>
                                     </tr>
                                 <?php
@@ -104,10 +108,24 @@ if (isset($this->data['config']['resource_http_methods'])) {
                                             <?php echo $field ?>
                                         </td>
                                         <td width="500">
-                                            <strong><?php echo $field ?></strong>
+                                            <strong>Query param</strong>
                                         </td>
                                     </tr>
                                 <?php
+                                }
+                                if (in_array($method, array('POST', 'PUT', 'PATCH'))) {
+                                    ?>
+                                    <tr>
+                                        <td width="100">Body</td>
+                                        <td colspan="2" width="600" class="<?php echo implode(' ', array('code')) ?>">
+                                            <?php
+                                            $elm = new Element\Textarea('rawparams[body]');
+                                            $elm->setAttribute('cols', 100);
+                                            echo $this->formTextarea($elm);
+                                            ?>
+                                        </td>
+                                    </tr>
+                                    <?php
                                 }
                                 ?>
                                 </tbody>
