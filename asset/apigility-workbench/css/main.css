@@ -2011,7 +2011,7 @@ form.formtastic div button {
 #header h1 {
     padding: 0;
     margin: 0;
-    background: url("/workbenchResources/gfx/enrise-creative-webtechnology-logo.gif") no-repeat scroll right 10px transparent;
+    background: url("/apigility-workbench/img/header-logo.png") no-repeat scroll right 10px transparent;
     /** Min height should match background image height! **/
     min-height: 64px;
     line-height: 64px;

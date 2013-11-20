@@ -49,8 +49,11 @@ var workBench = {
             body = JSON.stringify(JSON.parse(body), undefined, 2);
         }
 
-        var html = '' +
-        '    <div style="opacity: 1;" id="getGeneralCountries_sandbox_response" class="response">' +
+        var html = '';
+        if (response.response.statusCode >= 500 || response.response.statusCode == 404) {
+            html += '<img src="/apigility-workbench/zombie-elephant.jpg" alt="zombie elephant">';
+        }
+        html += '<div style="opacity: 1;" id="getGeneralCountries_sandbox_response" class="response">' +
         '    <h4>Response Code</h4>' +
         '    <div class="response_code">' +
         '        <pre>' + response.response.statusCode + '</pre>' +
