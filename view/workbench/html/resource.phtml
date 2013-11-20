@@ -9,13 +9,12 @@ if (isset($this->data['config']['resource_http_methods'])) {
     <li class="endpoint">
     <ul class="operations">
     <?php
-    $httpMethods = array_merge($this->data['config']['resource_http_methods'], $this->data['config']['collection_http_methods']);
-    $httpMethods = array_unique($httpMethods);
+    $httpMethods = $this->data['config']['resource_http_methods'];
     foreach ($httpMethods as $method) {
 
         $url = $this->data['route']['options']['route'];
         $nodeId = $method.'_'.$url;
-        $listClass = array(strtolower($method), 'operation');
+        $listClass = array($method, 'operation');
         $jslink = '#!/' . $nodeId;
         $version = $this->data['route']['options']['defaults']['version'];
         ?>
@@ -23,7 +22,7 @@ if (isset($this->data['config']['resource_http_methods'])) {
                     <div class="heading">
                         <h3>
                             <span class="http_method">
-                                <a onclick="Docs.toggleOperationContent('<?php echo $nodeId ?>');" href="<?php echo $jslink ?>"><?php echo $method ?></a>
+                                <a href="<?php echo $jslink ?>"><?php echo $method ?></a>
                             </span>
                             <span class="path">
                                 <a data-endpoint-div='<?php echo md5($nodeId) ?>' href="<?php echo $jslink ?>" class="toggler"><?php echo $url ?></a>

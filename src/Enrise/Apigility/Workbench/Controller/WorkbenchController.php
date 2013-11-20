@@ -2,7 +2,6 @@
 
 namespace Enrise\Apigility\Workbench\Controller;
 
-use Enrise\Apigility\Workbench\Filter\ProxyInputFilter;
 use Enrise\Apigility\Workbench\Model\ApiRequestBuilder;
 use Zend\Mvc\Controller\AbstractActionController;
 use Enrise\Apigility\Workbench\Model\ModuleModel;

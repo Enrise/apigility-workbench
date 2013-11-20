@@ -8,12 +8,12 @@
 namespace Enrise\Apigility\Workbench\Model;
 
 use Zend\Di\ServiceLocator;
+use Zend\ServiceManager\ServiceLocatorInterface;
 use ZF\Apigility\Admin\Model\ModuleModel as ApigilityModuleModel;
-use Zend\ServiceManager\ServiceManager;
 
 class ModuleModel extends ApigilityModuleModel
 {
-    public function getEntryPoints(ServiceManager $sm)
+    public function getEntryPoints(ServiceLocatorInterface $sm)
     {
         $config = $sm->get('config');
 
