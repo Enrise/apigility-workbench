@@ -1,3 +1,6 @@
+<ul id='resources'>
+<li class="resource">
+<ul class="endpoints">
 <?php
 use Zend\Form\Element;
 
@@ -14,7 +17,7 @@ if (isset($this->data['config']['resource_http_methods'])) {
         $jslink = '#!/' . $nodeId;
         $version = $this->data['route']['options']['defaults']['version'];
         ?>
-                <li id="list_<?php echo $nodeId ?>" class="<?php echo implode(' ', $listClass) ?>">
+                <li id="list_<?php echo $nodeId ?>" class="<?php echo strtolower(implode(' ', $listClass)) ?>">
                     <div class="heading">
                         <h3>
                             <span class="http_method">
@@ -174,3 +177,8 @@ if (isset($this->data['config']['resource_http_methods'])) {
     </li>
     <?php
 }
+?>
+</ul>
+</li>
+</ul>
+
