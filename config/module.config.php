@@ -1,14 +1,6 @@
 <?php
 
 return array(
-    'asset_manager' => array(
-        'resolver_configs' => array(
-            'paths' => array(
-                __DIR__ . '/../asset',
-            ),
-        ),
-    ),
-
     'view_manager' => array(
         'template_map' => array(
             'enrise/workbench/index' => __DIR__ . '/../view/workbench/index.phtml',
