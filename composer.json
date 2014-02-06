@@ -1,6 +1,34 @@
 {
     "name": "enrise/apigility-workbench",
+    "description": "A workbench for APIs built with Apigility",
+    "license": "MIT",
+    "version": "0.1",
+    "Authors": [
+        {
+            "name": "Richard Tuin",
+            "email": "richardtuin@gmail.com",
+            "homepage": "http://www.rtuin.nl",
+            "role": "Developer"
+        },
+        {
+            "name": "Jeroen van Dijk",
+            "email": "jeroen@enrise.com",
+            "homepage": "http://www.jrdk.nl",
+            "role": "Developer"
+        },
+        {
+            "name": "Frank de Weger",
+            "email": "frank@enrise.com",
+            "role": "Developer"
+        }
+    ],
     "autoload": {
-        "psr-0": {"Enrise\\Apigility\\Workbench": "src/"}
+        "psr-0": { "Enrise\\Apigility\\Workbench": "src/" }
+    },
+    "require": {
+        "zendframework/zendframework": "*"
+    },
+    "require-dev": {
+
     }
 }
